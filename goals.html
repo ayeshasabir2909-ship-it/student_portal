@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}
+Goals | Student Portal
+{% endblock %}
+
+
+{% block content %}
+
+<main class="container">
+
+    <div class="page-label">
+        Your Progress
+    </div>
+
+    <h1 class="page-title">
+        My Study Goals 🎯
+    </h1>
+
+    <p class="page-description">
+        Set your goals and track your progress.
+    </p>
+
+
+    <!-- ADD GOAL -->
+
+    <div class="form-card">
+
+        <h2>
+            Add a New Goal
+        </h2>
+
+        <form
+            method="POST"
+            class="form-row"
+        >
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Enter your study goal..."
+                required
+            >
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                + Add Goal
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- GOALS -->
+
+    <div class="section-label">
+        Your Goals
+    </div>
+
+    <h2 class="section-title">
+        Study Goals
+    </h2>
+
+
+    {% if goals %}
+
+        {% for goal in goals %}
+
+        <div
+            class="goal-card
+            {% if goal['completed'] %}
+                completed
+            {% endif %}"
+        >
+
+            <div class="goal-info">
+
+                <div class="goal-check">
+
+                    {% if goal["completed"] %}
+                        ✅
+                    {% else %}
+                        🎯
+                    {% endif %}
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        {{ goal["title"] }}
+                    </h3>
+
+                    {% if goal["completed"] %}
+
+                    <p>
+                        Goal completed 🎉
+                    </p>
+
+                    {% else %}
+
+                    <p>
+                        Keep working — you can do it! 💪
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="card-actions">
+
+                {% if not goal["completed"] %}
+
+                <a
+                    href="{{ url_for(
+                        'complete_goal',
+                        goal_id=goal['id']
+                    ) }}"
+                >
+                    ✅ Complete
+                </a>
+
+                {% endif %}
+
+                <a
+                    href="{{ url_for(
+                        'edit_goal',
+                        goal_id=goal['id']
+                    ) }}"
+                >
+                    ✏️ Edit
+                </a>
+
+                <a
+                    href="{{ url_for(
+                        'delete_goal',
+                        goal_id=goal['id']
+                    ) }}"
+                    class="delete-link"
+                    onclick="return confirm('Delete this goal?')"
+                >
+                    🗑️ Delete
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <div class="icon">
+            🎯
+        </div>
+
+        <h3>
+            No goals yet
+        </h3>
+
+        <p>
+            Add your first study goal above.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}

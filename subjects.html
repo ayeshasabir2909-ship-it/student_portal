@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}
+Subjects | Student Portal
+{% endblock %}
+
+
+{% block content %}
+
+<main class="container">
+
+    <div class="page-label">
+        Your Studies
+    </div>
+
+    <h1 class="page-title">
+        My Subjects 📚
+    </h1>
+
+    <p class="page-description">
+        Manage your subjects and keep your studies organized.
+    </p>
+
+
+    <!-- ADD SUBJECT -->
+
+    <div class="form-card">
+
+        <h2>
+            Add a New Subject
+        </h2>
+
+        <form
+            method="POST"
+            class="form-row"
+        >
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter subject name"
+                required
+            >
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                + Add Subject
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- SUBJECTS -->
+
+    <div class="section-label">
+        Your Subjects
+    </div>
+
+    <h2 class="section-title">
+        All Subjects
+    </h2>
+
+
+    {% if subjects %}
+
+    <div class="cards-grid">
+
+        {% for subject in subjects %}
+
+        <div class="card">
+
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h3>
+                {{ subject["name"] }}
+            </h3>
+
+            <p>
+                Ready to study and learn.
+            </p>
+
+            <div class="card-actions">
+
+                <a
+                    href="{{ url_for(
+                        'subject_detail',
+                        subject_id=subject['id']
+                    ) }}"
+                >
+                    Open Subject →
+                </a>
+
+                <a
+                    href="{{ url_for(
+                        'edit_subject',
+                        subject_id=subject['id']
+                    ) }}"
+                >
+                    ✏️ Edit
+                </a>
+
+                <a
+                    href="{{ url_for(
+                        'delete_subject',
+                        subject_id=subject['id']
+                    ) }}"
+                    class="delete-link"
+                    onclick="return confirm('Delete this subject?')"
+                >
+                    🗑️ Delete
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <div class="icon">
+            📚
+        </div>
+
+        <h3>
+            No subjects yet
+        </h3>
+
+        <p>
+            Add your first subject above to get started.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}

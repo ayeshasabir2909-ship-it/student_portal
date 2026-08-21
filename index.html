@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | Student Portal
+{% endblock %}
+
+
+{% block content %}
+
+<main class="container">
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <div class="page-label">
+                Student Dashboard
+            </div>
+
+            <h1>
+                Welcome back 👋
+            </h1>
+
+            <p>
+                Manage your studies, track your goals,
+                and keep your learning organized.
+            </p>
+
+        </div>
+
+        <div class="quick-icon">
+            📚
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <div class="stat-number">
+                {{ total_subjects }}
+            </div>
+
+            <div class="stat-label">
+                Total Subjects
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <div class="stat-number">
+                {{ total_goals }}
+            </div>
+
+            <div class="stat-label">
+                Study Goals
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
+            <div class="stat-number">
+                {{ completed_goals }}
+            </div>
+
+            <div class="stat-label">
+                Completed Goals
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📝
+            </div>
+
+            <div class="stat-number">
+                {{ total_notes }}
+            </div>
+
+            <div class="stat-label">
+                Study Notes
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="section-label">
+        Quick Actions
+    </div>
+
+    <h2 class="section-title">
+        Manage Your Study
+    </h2>
+
+
+    <div class="quick-actions">
+
+        <a
+            href="{{ url_for('subjects') }}"
+            class="quick-card"
+        >
+
+            <div class="quick-icon">
+                📚
+            </div>
+
+            <div>
+
+                <h3>
+                    Subjects
+                </h3>
+
+                <p>
+                    Add and manage your subjects.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('goals') }}"
+            class="quick-card"
+        >
+
+            <div class="quick-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <h3>
+                    Study Goals
+                </h3>
+
+                <p>
+                    Set goals and track progress.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('subjects') }}"
+            class="quick-card"
+        >
+
+            <div class="quick-icon">
+                📝
+            </div>
+
+            <div>
+
+                <h3>
+                    Study Notes
+                </h3>
+
+                <p>
+                    Keep your important notes organized.
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="section-label">
+        Your Progress
+    </div>
+
+    <h2 class="section-title">
+        Keep Going 🚀
+    </h2>
+
+
+    <div class="progress-banner">
+
+        <div>
+
+            <h2>
+                Build Your Study Habit
+            </h2>
+
+            <p>
+                Stay consistent with your subjects
+                and complete your study goals.
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('goals') }}"
+            class="btn"
+        >
+            View Goals →
+        </a>
+
+    </div>
+
+</main>
+
+{% endblock %}

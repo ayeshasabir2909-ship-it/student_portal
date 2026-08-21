@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ subject[1] }} | Student Portal</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/subjects">Subjects</a>
+        <a href="/goals">Goals</a>
+    </nav>
+
+    <main>
+
+        <div class="page-header">
+
+            <h1>{{ subject[1] }}</h1>
+
+            <p>
+                Welcome to your {{ subject[1] }} study page 📚
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h2>📚 Study Material</h2>
+
+            <p>
+                Your study material will be added here.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h2>📝 Notes</h2>
+
+            <p>
+                Your notes for this subject will appear here.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h2>✅ Tasks</h2>
+
+            <p>
+                Your study tasks will appear here.
+            </p>
+
+        </div>
+
+        <br>
+
+        <a href="/subjects">
+            ← Back to Subjects
+        </a>
+
+    </main>
+
+</body>
+
+</html>

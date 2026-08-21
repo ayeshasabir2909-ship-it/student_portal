@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Subject | Student Portal
+{% endblock %}
+
+
+{% block content %}
+
+<main class="container">
+
+    <div class="page-label">
+        Subjects
+    </div>
+
+    <h1 class="page-title">
+        Edit Subject ✏️
+    </h1>
+
+    <p class="page-description">
+        Update your subject name.
+    </p>
+
+
+    <div class="form-card">
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="name"
+                value="{{ subject['name'] }}"
+                required
+            >
+
+            <br><br>
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Save Changes
+            </button>
+
+            <a
+                href="{{ url_for('subjects') }}"
+                class="btn"
+            >
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Note | Student Portal
+{% endblock %}
+
+
+{% block content %}
+
+<main class="container">
+
+    <div class="page-label">
+        Study Notes
+    </div>
+
+    <h1 class="page-title">
+        Edit Note ✏️
+    </h1>
+
+    <p class="page-description">
+        Update your study note.
+    </p>
+
+
+    <div class="form-card">
+
+        <form method="POST">
+
+            <textarea
+                name="content"
+                required
+            >{{ note["content"] }}</textarea>
+
+            <br><br>
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Save Note
+            </button>
+
+            <a
+                href="{{ url_for(
+                    'subject_detail',
+                    subject_id=subject_id
+                ) }}"
+                class="btn"
+            >
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</main>
+
+{% endblock %}

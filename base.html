@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        Student Portal
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a
+            href="{{ url_for('home') }}"
+            class="brand"
+        >
+            🎓 Student Portal
+        </a>
+
+        {% if session.get("user_id") %}
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('subjects') }}">
+                Subjects
+            </a>
+
+            <a href="{{ url_for('goals') }}">
+                Goals
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    {% block content %}
+    {% endblock %}
+
+
+    <!-- FOOTER -->
+
+    {% if session.get("user_id") %}
+
+    <footer class="footer">
+        © 2026 Student Portal
+    </footer>
+
+    {% endif %}
+
+</body>
+
+</html>

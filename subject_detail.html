@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ subject["name"] }} | Student Portal
+{% endblock %}
+
+
+{% block content %}
+
+<main class="container">
+
+    <div class="page-label">
+        Subject
+    </div>
+
+    <h1 class="page-title">
+        {{ subject["name"] }} 📚
+    </h1>
+
+    <p class="page-description">
+        Keep your study notes organized for this subject.
+    </p>
+
+
+    <!-- ADD NOTE -->
+
+    <div class="form-card">
+
+        <h2>
+            Add a Study Note
+        </h2>
+
+        <form method="POST">
+
+            <textarea
+                name="content"
+                placeholder="Write your study note here..."
+                required
+            ></textarea>
+
+            <br><br>
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                + Add Note
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- NOTES -->
+
+    <div class="section-label">
+        Study Notes
+    </div>
+
+    <h2 class="section-title">
+        Your Notes
+    </h2>
+
+
+    {% if notes %}
+
+        {% for note in notes %}
+
+        <div class="note-card">
+
+            <p>
+                {{ note["content"] }}
+            </p>
+
+            <div class="note-actions">
+
+                <a
+                    href="{{ url_for(
+                        'edit_note',
+                        note_id=note['id'],
+                        subject_id=subject['id']
+                    ) }}"
+                >
+                    ✏️ Edit
+                </a>
+
+                <a
+                    href="{{ url_for(
+                        'delete_note',
+                        note_id=note['id'],
+                        subject_id=subject['id']
+                    ) }}"
+                    class="delete"
+                    onclick="return confirm('Delete this note?')"
+                >
+                    🗑️ Delete
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <div class="icon">
+            📝
+        </div>
+
+        <h3>
+            No notes yet
+        </h3>
+
+        <p>
+            Add your first study note above.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}
